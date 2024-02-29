@@ -6,10 +6,14 @@
     "date-fns": "^3.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-session": "^1.18.0",
     "faker": "^6.6.6",
     "method-override": "^3.0.0",
+    "mongodb": "^6.3.0",
     "mongoose": "^8.2.0",
     "openweathermap-js": "^1.0.1",
+    "passport": "^0.7.0",
+    "passport-local-mongoose": "^8.0.0",
     "path": "^0.12.7"
   },
   "scripts": {

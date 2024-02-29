@@ -1,24 +1,13 @@
 [
   {
-    "flightNumber": "Z57294",
-    "cityName": "Paris",
+    "flightNumber": "AY5487",
+    "cityName": "Beijing",
     "adults": 1,
     "children": 1,
-    "phone": "+77776001754",
+    "phone": "1",
     "hotelRating": 1,
-    "formattedDateArrival": "3/1/2024, 12:00:00 AM",
-    "formattedDateDeparture": "3/7/2024, 12:00:00 AM",
-    "totalCost": 1875
-  },
-  {
-    "flightNumber": "RL8204",
-    "cityName": "Berlin",
-    "adults": 3,
-    "children": 2,
-    "phone": "+77776001754",
-    "hotelRating": 1,
-    "formattedDateArrival": "3/8/2024, 12:00:00 AM",
-    "formattedDateDeparture": "3/8/2024, 12:00:00 AM",
-    "totalCost": 6000
+    "formattedDateArrival": "1/1/1, 12:00:00 AM",
+    "formattedDateDeparture": "1/1/1, 12:00:00 AM",
+    "totalCost": 1500
   }
 ]

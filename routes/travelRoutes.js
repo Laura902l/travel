@@ -1,29 +1,35 @@
+//router/travelRoutes.js
+
 const fs = require('fs');
 const express = require('express');
 const app = express();
-const router = express.Router();
 const methodOverride = require('method-override');
 const axios = require('axios');
 const path = require('path');
 const tourHistoryFilePath = path.join(__dirname, 'tourHistory.json');
 const tourHistory = [];
 const mongoose = require('mongoose');
+const session = require('express-session');
+const passport = require('passport');
+const passportLocalMongoose = require('passport-local-mongoose');
 
-app.set('view engine', 'ejs');
-app.use(express.static("public"));
-app.use(methodOverride('_method'));
-app.use(express.urlencoded({ extended: true })); 
+const router = express.Router();
+const ejs = require('ejs');
+
+
+router.use(express.urlencoded({ extended: true })); 
 
 
 router.get('/', (req, res) => {
     res.render('home');
 });
-
-mongoose.connect('mongodb://localhost:27017/travelAgency', { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err));
+// mongoose.connect('mongodb://localhost:27017/travelAgency')
+//     .then(() => console.log('MongoDB connected'))
+//     .catch(err => console.error('MongoDB connection error:', err));
+// ;
 
 const BookingSchema = new mongoose.Schema({
+    username: String,
     flightNumber: String,
     cityName: String,
     adults: Number,
@@ -34,12 +40,92 @@ const BookingSchema = new mongoose.Schema({
     formattedDateDeparture: String,
    
 });
+
+
+const userSchema = new mongoose.Schema({
+    username: String,
+    password: String
+});
+
 module.exports = {
     Booking: mongoose.model('Booking', BookingSchema)
 };
 const Booking = mongoose.model('Booking', BookingSchema);
 
-  
+// userSchema.plugin(passportLocalMongoose);
+// passport.serializeUser((user, done) => {
+//     done(null, user.id);
+// });
+
+// const User = mongoose.model('User', userSchema);
+// passport.use(User.createStrategy());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
+
+// router.get('/register', (req, res) => {
+//     res.render("signUp");
+// });
+
+// router.use(session({
+//     secret: 'secret',
+//     resave: false,
+//     saveUninitialized: false
+// }));
+// router.use(passport.initialize());
+// router.use(passport.session());
+
+// router.get('/logout', (req, res) => {
+//     req.logout(function (err) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             res.redirect('/register');
+//         }
+//     });
+// });
+
+// router.get('/login', (req, res) => {
+//     res.render('login');
+// });
+
+
+// router.post('/login', (req, res) => {
+//     const username = req.body.username;
+//     const password = req.body.password;
+//     const user = new User({
+//         username: username,
+//         password: password,
+//     });
+//     req.login(user, function (err) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             passport.authenticate('local')(req, res, function () {
+//                 res.redirect('/secret');
+//             });
+//         }
+//     });
+// });
+
+// router.post('/register', async (req, res) => {
+//     // User.register({ username: req.body.username }, req.body.password, function (err, user) {
+//     //     if (err) {
+//     //         console.log(err);
+//     //     } else {
+//     //         passport.authenticate('local')(req, res, function () {
+//     //             res.redirect('/secret');
+//     //         });
+//     //     }
+//     // });
+//     res.send('registered')
+// });
+// router.get('/secret', (req, res) => {
+//     if (req.isAuthenticated()) {
+//         res.render('secret');
+//     } else {
+//         res.send("sorry");
+//     }
+// });
 
 const generateRandomAlphaNumeric = (length) => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -204,4 +290,3 @@ router.get('/tourHistory', (req, res) => {
 });
 
 module.exports = router;
-
