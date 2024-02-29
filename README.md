@@ -6,7 +6,7 @@ In this assignment, I developed a Tour Management System using Node.js and Expre
 
 1. Clone the Repository:
     ```bash
-    git clone https://github.com/Laura902l/Assignment3.git
+    git clone https://github.com/Laura902l/travel.git
     cd Assignment4
 
 
